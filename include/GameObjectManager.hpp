@@ -1,9 +1,9 @@
 #pragma once
 
-#include <vector>
-#include <queue>
-#include "GameObject.hpp"
 #include "Component.hpp"
+#include "GameObject.hpp"
+#include <queue>
+#include <vector>
 
 class GameObject;
 
@@ -12,7 +12,7 @@ class Component;
 class GameObjectManager {
 private:
 	std::map<LayerType, std::vector<GameObject *>> _gameObjects;
-	std::queue<GameObject *> _toDestroy;
+	std::queue<GameObject *>                       _toDestroy;
 
 public:
 	void Update(uint32_t deltaTime);
@@ -33,14 +33,15 @@ public:
 
 	[[nodiscard]] std::vector<GameObject *> GetGameObjects(LayerType layer) const;
 
-	GameObject *FindGameObject(const std::string& gameObjectName, LayerType layer);
+	GameObject *FindGameObject(const std::string &gameObjectName,
+														 LayerType          layer);
 
 	GameObject &AddGameObject(std::string gameObjectName, LayerType layer);
 
-	GameObject &AddGameObject(std::string gameObjectName, int posX, int posY, int scaleX, int scaleY,
-	                          LayerType layer);
+	GameObject &AddGameObject(std::string gameObjectName, int posX, int posY,
+														int scaleX, int scaleY, LayerType layer);
 
 	CollisionTagType CheckCollisions(GameObject &go) const;
 
-	static void CheckAllCollisions() ;
+	static void CheckAllCollisions();
 };

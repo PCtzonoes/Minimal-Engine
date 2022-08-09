@@ -1,23 +1,21 @@
 #pragma once
 
-#include <SDL2/SDL.h>
-#include <glm/glm.hpp>
-#include "GameObjectManager.hpp"
 #include "AssetManager.hpp"
 #include "Component.hpp"
+#include "GameObjectManager.hpp"
+#include <SDL2/SDL.h>
+#include <glm/glm.hpp>
 
 class TileComponent : public Component {
 private:
 	SDL_Texture *_texture;
-	SDL_Rect _sourceRect;
-	SDL_Rect _destinationRect;
-	glm::vec2 _position;
+	SDL_Rect     _sourceRect;
+	SDL_Rect     _destinationRect;
+	glm::vec2    _position;
 
 public:
-	TileComponent(int sourceRectX, int sourceRectY,
-	              int destX, int destY,
-	              int tileSize, int tileScale,
-	              std::string assetTextureId) {
+	TileComponent(int sourceRectX, int sourceRectY, int destX, int destY,
+								int tileSize, int tileScale, std::string assetTextureId) {
 		_texture = Game::GlobalAssetManager->GetTexture(assetTextureId);
 
 		_sourceRect.x = sourceRectX;
@@ -34,9 +32,7 @@ public:
 		_position.y = destY;
 	}
 
-	~TileComponent() {
-		SDL_DestroyTexture(_texture);
-	}
+	~TileComponent() { SDL_DestroyTexture(_texture); }
 
 	void Update(uint32_t deltaTime) override {
 		_destinationRect.x = _position.x - Game::Camera.x;
@@ -44,6 +40,7 @@ public:
 	}
 
 	void Render() override {
-		TextureManager::Draw(_texture, _sourceRect, _destinationRect, SDL_FLIP_NONE);
+		TextureManager::Draw(_texture, _sourceRect, _destinationRect,
+												 SDL_FLIP_NONE);
 	}
 };

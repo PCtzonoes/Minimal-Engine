@@ -8,7 +8,7 @@ SDL_Texture *TextureManager::LoadTexture(const char *fileName) {
 }
 
 void TextureManager::Draw(SDL_Texture *texture, SDL_Rect source,
-                          SDL_Rect destination, SDL_RendererFlip flip) {
-	SDL_RenderCopyEx(Game::Renderer, texture, &source, &destination,
-	                 0.0f, nullptr, flip);
+													SDL_Rect destination, SDL_RendererFlip flip) {
+	SDL_RenderCopyEx(Game::Renderer, texture, &source, &destination, 0.0f,
+									 nullptr, flip);
 }

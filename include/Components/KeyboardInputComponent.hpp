@@ -16,7 +16,7 @@ class KeyboardInputComponent : public Component {
 private:
 	TransformComponent *_transform;
 	RigidbodyComponent *_rb;
-	SpriteComponent *_sprite;
+	SpriteComponent    *_sprite;
 
 	SDL_Keycode _upKey;
 	SDL_Keycode _downKey;
@@ -24,30 +24,30 @@ private:
 	SDL_Keycode _rightKey;
 	SDL_Keycode _shootKey;
 
-	int _moveSpeed = 100;
-	int _bulletSpeed = 167;
-	float _velX = 0;
-	float _velY = 0;
+	int   _moveSpeed   = 100;
+	int   _bulletSpeed = 167;
+	float _velX        = 0;
+	float _velY        = 0;
 
 public:
 	KeyboardInputComponent() {}
 
 	KeyboardInputComponent(SDL_Keycode upKey, SDL_Keycode downKey,
-	                       SDL_Keycode leftKey, SDL_Keycode rightKey,
-	                       SDL_Keycode shootKey) {
-		_upKey = upKey;
-		_downKey = downKey;
-		_leftKey = leftKey;
+												 SDL_Keycode leftKey, SDL_Keycode rightKey,
+												 SDL_Keycode shootKey) {
+		_upKey    = upKey;
+		_downKey  = downKey;
+		_leftKey  = leftKey;
 		_rightKey = rightKey;
 		_shootKey = shootKey;
 	}
 
 	KeyboardInputComponent(std::string upKey, std::string downKey,
-	                       std::string leftKey, std::string rightKey,
-	                       std::string shootKey) {
-		_upKey = GetSDLKeyCode(upKey);
-		_downKey = GetSDLKeyCode(downKey);
-		_leftKey = GetSDLKeyCode(leftKey);
+												 std::string leftKey, std::string rightKey,
+												 std::string shootKey) {
+		_upKey    = GetSDLKeyCode(upKey);
+		_downKey  = GetSDLKeyCode(downKey);
+		_leftKey  = GetSDLKeyCode(leftKey);
 		_rightKey = GetSDLKeyCode(rightKey);
 		_shootKey = GetSDLKeyCode(shootKey);
 	}
@@ -83,7 +83,7 @@ public:
 
 	void OnAwake() override {
 		_transform = Owner->GetTransform();
-		_rb = Owner->GetComponent<RigidbodyComponent>();
+		_rb        = Owner->GetComponent<RigidbodyComponent>();
 		if (_rb == nullptr) {
 			_rb = &Owner->AddComponent<RigidbodyComponent>(0, 0, 0.0f);
 		}
@@ -103,29 +103,29 @@ public:
 
 			if (kc == _upKey) {
 				_sprite->Play(AnimDirection::Up);
-				_velY = -_bulletSpeed;
-				_velX = 0;
+				_velY           = -_bulletSpeed;
+				_velX           = 0;
 				_rb->Velocity.y = -_moveSpeed;
 				_rb->Velocity.x = 0;
 			}
 			if (kc == _downKey) {
 				_sprite->Play(AnimDirection::Down);
-				_velY = _bulletSpeed;
-				_velX = 0;
+				_velY           = _bulletSpeed;
+				_velX           = 0;
 				_rb->Velocity.y = _moveSpeed;
 				_rb->Velocity.x = 0;
 			}
 			if (kc == _leftKey) {
 				_sprite->Play(AnimDirection::Left);
-				_velX = -_bulletSpeed;
-				_velY = 0;
+				_velX           = -_bulletSpeed;
+				_velY           = 0;
 				_rb->Velocity.x = -_moveSpeed;
 				_rb->Velocity.y = 0;
 			}
 			if (kc == _rightKey) {
 				_sprite->Play(AnimDirection::Right);
-				_velX = _bulletSpeed;
-				_velY = 0;
+				_velX           = _bulletSpeed;
+				_velY           = 0;
 				_rb->Velocity.x = _moveSpeed;
 				_rb->Velocity.y = 0;
 			}
@@ -142,8 +142,7 @@ public:
 			if (kc == _leftKey || kc == _rightKey) {
 				_rb->Velocity.x = 0;
 			}
-			if (kc == _shootKey) {
-			}
+			if (kc == _shootKey) {}
 		}
 	}
 
@@ -156,6 +155,6 @@ public:
 		bullet.AddComponent<SpriteComponent>("player-bullet", 0, 0, 4, 4);
 		bullet.AddComponent<LifeSpanComponent>(5.0f);
 		bullet.AddComponent<ColliderComponent>(CollisionTagType::PlayerBullet, 8, 8,
-		                                       0, 0, nullptr);
+																					 0, 0, nullptr);
 	}
 };

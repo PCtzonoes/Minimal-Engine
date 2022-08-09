@@ -1,10 +1,10 @@
 #pragma once
 
-#include "GameObjectManager.hpp"
-#include "Game.hpp"
 #include "Component.hpp"
-#include <glm/glm.hpp>
+#include "Game.hpp"
+#include "GameObjectManager.hpp"
 #include <SDL2/SDL.h>
+#include <glm/glm.hpp>
 
 class TransformComponent : public Component {
 
@@ -14,12 +14,12 @@ public:
 
 	TransformComponent() {
 		Position = glm::vec2(0, 0);
-		Scale = glm::vec2(1, 1);
+		Scale    = glm::vec2(1, 1);
 	}
 
 	TransformComponent(int posX, int posY, int scaleX, int scaleY) {
 		Position = glm::vec2(posX, posY);
-		Scale = glm::vec2(scaleX, scaleY);
+		Scale    = glm::vec2(scaleX, scaleY);
 	}
 
 	void Translate(float deltaX, float deltaY) {
@@ -27,7 +27,5 @@ public:
 		Position.y += deltaY;
 	}
 
-	void Translate(glm::vec2 delta) {
-		Position += delta;
-	}
+	void Translate(glm::vec2 delta) { Position += delta; }
 };

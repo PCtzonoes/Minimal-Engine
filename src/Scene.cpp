@@ -1,26 +1,26 @@
-#include <fstream>
 #include "Scene.hpp"
-#include "Game.hpp"
 #include "Components/TileComponent.hpp"
+#include "Game.hpp"
+#include <fstream>
 
 extern GameObjectManager Manager;
 
 Scene::Scene(std::string textureId, int tileScale, int tileSize) {
 	_textureId = textureId;
 	_tileScale = tileScale;
-	_tileSize = tileSize;
+	_tileSize  = tileSize;
 }
 
-Scene::~Scene() {
-}
+Scene::~Scene() {}
 
 void Scene::AddTile(int sourceX, int sourceY, int destX, int destY) {
 	GameObject &newTile = Manager.AddGameObject("Tile", LayerType::Tile);
-	newTile.AddComponent<TileComponent>(sourceX, sourceY, destX, destY, _tileSize, _tileScale,
-	                                    _textureId);
+	newTile.AddComponent<TileComponent>(sourceX, sourceY, destX, destY, _tileSize,
+																			_tileScale, _textureId);
 }
 
-void Scene::LoadFromFile(std::string sceneFilePath, int mapSizeX, int mapSizeY) {
+void Scene::LoadFromFile(std::string sceneFilePath, int mapSizeX,
+												 int mapSizeY) {
 	_mapSizeX = mapSizeX;
 	_mapSizeY = mapSizeY;
 	std::fstream sceneFile;
@@ -34,7 +34,8 @@ void Scene::LoadFromFile(std::string sceneFilePath, int mapSizeX, int mapSizeY) 
 			int sourceX = atoi(&ch) * _tileSize;
 			sceneFile.ignore(); // ignores next character (',', ' ', '\n', etc..)
 
-			AddTile(sourceX, sourceY, x * _tileSize * _tileScale, y * _tileSize * _tileScale);
+			AddTile(sourceX, sourceY, x * _tileSize * _tileScale,
+							y * _tileSize * _tileScale);
 		}
 	}
 	sceneFile.close();

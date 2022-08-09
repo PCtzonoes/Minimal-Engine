@@ -5,10 +5,10 @@
 class Scene {
 private:
 	std::string _textureId;
-	int _tileScale;
-	int _tileSize;
-	int _mapSizeX;
-	int _mapSizeY;
+	int         _tileScale;
+	int         _tileSize;
+	int         _mapSizeX;
+	int         _mapSizeY;
 
 public:
 	Scene(std::string textureId, int scale, int tileSize);

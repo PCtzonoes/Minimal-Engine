@@ -1,6 +1,6 @@
-#include <iostream>
-#include "Game.hpp"
 #include "Constants.hpp"
+#include "Game.hpp"
+#include <iostream>
 
 int main() {
 	std::cout << "Welcome to my awesome GameEngine" << std::endl;

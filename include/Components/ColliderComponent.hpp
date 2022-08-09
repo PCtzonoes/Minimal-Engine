@@ -1,35 +1,36 @@
 #pragma once
 
-#include <algorithm>
-#include "Game.hpp"
 #include "Collision.hpp"
+#include "Game.hpp"
 #include "GameObjectManager.hpp"
 #include "TransformComponent.hpp"
+#include <algorithm>
 
 class ColliderComponent : public Component {
 private:
-	TransformComponent *_transform;
-	int _offsetX;
-	int _offsetY;
+	TransformComponent                      *_transform;
+	int                                      _offsetX;
+	int                                      _offsetY;
 	std::function<void(ColliderComponent *)> _onCollision;
 
 public:
 	CollisionTagType ColliderTag;
-	SDL_Rect Collider;
-	SDL_Rect DestinationRect;
+	SDL_Rect         Collider;
+	SDL_Rect         DestinationRect;
 
-	ColliderComponent(CollisionTagType colTag, int w, int h, int offsetX = 0, int offsetY = 0,
-	                  std::function<void(ColliderComponent *)> onCollision = nullptr) {
-		ColliderTag = colTag;
-		Collider = {0, 0, w, h};
-		_offsetX = offsetX;
-		_offsetY = offsetY;
+	ColliderComponent(
+			CollisionTagType colTag, int w, int h, int offsetX = 0, int offsetY = 0,
+			std::function<void(ColliderComponent *)> onCollision = nullptr) {
+		ColliderTag  = colTag;
+		Collider     = {0, 0, w, h};
+		_offsetX     = offsetX;
+		_offsetY     = offsetY;
 		_onCollision = onCollision;
 	}
 
 	void OnAwake() override {
 		Collision::Colliders.emplace_back(this);
-		_transform = Owner->GetTransform();
+		_transform      = Owner->GetTransform();
 		DestinationRect = {Collider.x, Collider.y, Collider.w, Collider.h};
 	}
 
@@ -49,7 +50,8 @@ public:
 	}
 
 	void OnDestroy() override {
-		auto itr = std::remove(Collision::Colliders.begin(), Collision::Colliders.end(), this);
+		auto itr = std::remove(Collision::Colliders.begin(),
+													 Collision::Colliders.end(), this);
 		Collision::Colliders.erase(itr, Collision::Colliders.end());
 	}
 

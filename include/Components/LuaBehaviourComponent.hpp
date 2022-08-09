@@ -2,8 +2,8 @@
 
 #include "Component.hpp"
 
-#include <utility>
 #include "../lib/sol.hpp"
+#include <utility>
 
 class LuaBehaviourComponent : public Component {
 private:
@@ -12,9 +12,10 @@ private:
 	sol::function _onDestroy;
 
 public:
-	LuaBehaviourComponent(sol::function onAwake, sol::function onUpdate, sol::function onDestroy) {
-		_onAwake = std::move(onAwake);
-		_onUpdate = std::move(onUpdate);
+	LuaBehaviourComponent(sol::function onAwake, sol::function onUpdate,
+												sol::function onDestroy) {
+		_onAwake   = std::move(onAwake);
+		_onUpdate  = std::move(onUpdate);
 		_onDestroy = std::move(onDestroy);
 	}
 
