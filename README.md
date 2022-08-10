@@ -1,8 +1,8 @@
-# zeppelin MO
+# Minimal Game Engine
 
 ## Introduction
 
-making a small game with my own engine developed during College days.
+This is a incomplete small game engine developed during my college days.
 
 ## Dependencies
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(zeppelin_mo)
+project(mini_engine)
 
 set(CMAKE_CXX_STANDARD 17)
 set(REQUIRED_LIBS SDL2 SDL2_image SDL2_mixer SDL2_ttf lua)
