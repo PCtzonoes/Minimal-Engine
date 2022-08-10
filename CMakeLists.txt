@@ -12,4 +12,4 @@ add_subdirectory(src)
 
 
 
-target_link_libraries(${PROJECT_NAME}  ${REQUIRED_LIBS})
+target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS})

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObject.hpp"
+#include <cstdint>
 
 class GameObject; // Forward Declaration
 

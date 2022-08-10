@@ -2,7 +2,7 @@
 
 #include "Component.hpp"
 
-#include "../lib/sol.hpp"
+#include <sol/sol.hpp>
 #include <utility>
 
 class LuaBehaviourComponent : public Component {

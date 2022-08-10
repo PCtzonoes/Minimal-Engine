@@ -4,6 +4,8 @@
 #include "GameObject.hpp"
 #include <queue>
 #include <vector>
+#include <string>
+#include <map>
 
 class GameObject;
 

@@ -8,6 +8,7 @@
 #include "Game.hpp"
 #include "GameObject.hpp"
 #include "GameObjectManager.hpp"
+#include "LifeSpanComponent.hpp"
 #include "RigidbodyComponent.hpp"
 #include "SpriteComponent.hpp"
 #include "TransformComponent.hpp"
